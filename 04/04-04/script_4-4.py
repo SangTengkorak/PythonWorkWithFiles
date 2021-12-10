@@ -1,0 +1,35 @@
+# Extract from and write to TAR archives
+
+import tarfile
+
+
+def create_tar_archive():
+    # optional compression mode could be used, such as gz, bz2 or xz
+    files = ['monsters.csv', 'Monster_contact_sheet.pdf']
+    with tarfile.open('archive.tar', 'w') as tar:
+        for file in files:
+            tar.add(file)
+
+
+def add_tar_archive():
+    with tarfile.open('archive.tar', 'a') as tar:
+        tar.add('monsters_card03.png')
+# append mode not support compression mode yet, such as gz, bz2 or xz
+
+
+def extract_tar():
+    with tarfile.open('archive.tar') as tar:
+        tar.extract('monsters_card03.png')
+
+
+def extract_all():
+    with tarfile.open('archive.tar') as tar:
+        tar.extractall('extracted_monster_files')
+# will direct extracted fu=iles to newly created folder
+
+
+if __name__ == "__main__":
+    # create_tar_archive()
+    # add_tar_archive()
+    # extract_tar()
+    extract_all()
